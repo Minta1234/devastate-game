@@ -192,11 +192,21 @@
     }
 
     .sub-button{
-      border: solid;
-      border-width: 1px;
+      background: rgba(40, 40, 45, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
       font-size: 3vmin;
-      margin: 2px;
-      padding: 3px;
+      margin: 4px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    .sub-button:hover, .sub-button:active {
+      background: rgba(60, 60, 70, 0.9);
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      transform: translateY(-1px);
     }
 
     .check{
@@ -207,61 +217,81 @@
     /* popup */
     #popup {
       height: auto;
-      padding: 1vw;
+      padding: 20px;
       max-width: 50vmin;
       min-width: 50vmin;
       margin-left: -25vmin;
-      background-color: #444;
+      background: rgba(25, 25, 30, 0.95);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
       color: #fff;
       text-align: center;
-      border-radius: 2px;
-      padding: 5px;
+      border-radius: 16px;
       position: fixed;
-      z-index: 1;
+      z-index: 100;
       left: 50%;
-      top: 30px;
+      top: 40px;
       font-size: 3vmin;
+      animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px) scale(0.95); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
     }
 
     #instructions {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       z-index: 1000;
-      /* Hidden by default */
       display: none;
     }
-
-    /* Show as flex only when hidden=false */
     #instructions:not([hidden]) {
       display: flex;
       justify-content: center;
       align-items: center;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .instructions-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
+      background: rgba(30, 30, 35, 0.95);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 25px;
+      border-radius: 16px;
       width: 80%;
       max-width: 600px;
-      max-height: 80vh; /* New: Limit max height to 80% of viewport */
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      max-height: 80vh;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
       position: relative;
-      display: flex; /* New: Enable flex layout */
-      flex-direction: column; /* New: Arrange child elements vertically */
-      overflow-y: auto; /* New: Show scrollbar when content overflows */
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
     }
 
     .close-button {
       position: absolute;
-      top: 10px; right: 15px;
-      font-size: 24px;
+      top: 15px; right: 20px;
+      font-size: 28px;
       cursor: pointer;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
     }
+    .close-button:hover { color: white; }
 
     #toast {
       visibility: hidden;
@@ -476,12 +506,12 @@
                 <hr/>
                 <div>
                   <a>Load to Save Folder</a>
-                  <input type="file" id="savefiles"  onchange="uploadSaveDir()" multiple />
+                  <input type="file" id="savefiles" accept="*/*" onchange="uploadSaveDir()" multiple />
                   <a id="savedownload" download="Save.zip" hidden>Download</a>
                 </div>
                 <div>
                   <p class="footer-text" hidden>Load Temporary Save (disappears on reload)</p>
-                  <input class="sub-button" type="file" onchange="uploadSaveData()" id="savedata" name="savedata" hidden/>
+                  <input class="sub-button" type="file" accept="*/*" onchange="uploadSaveData()" id="savedata" name="savedata" hidden/>
                 </div>
                 <hr/>
                 <p id="bwoditorerror">No errors</p>

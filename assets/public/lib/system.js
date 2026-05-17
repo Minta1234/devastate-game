@@ -317,14 +317,14 @@ function initializeGame() { // Game startup processing on touch
     }
 }
 mainContent.ontouchend = (e) => { //Touch on start
-    if (e.target.localName == "a") {
+    if (e.target.localName == "a" || e.target.localName == "input" || e.target.localName == "button") {
         return;
     }
     e.preventDefault();
     initializeGame();
 }
 mainContent.onclick = (e) => { //Respond to click
-    if (e.target.localName == "a") {
+    if (e.target.localName == "a" || e.target.localName == "input" || e.target.localName == "button") {
         return;
     }
     e.preventDefault();
@@ -332,6 +332,9 @@ mainContent.onclick = (e) => { //Respond to click
 }
 
 window.addEventListener('touchend', function (event) { // Handling touch events outside iOS area
+    if (event.target.localName == "a" || event.target.localName == "input" || event.target.localName == "button") {
+        return;
+    }
     event.preventDefault();
 });
 

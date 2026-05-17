@@ -2,8 +2,8 @@ from PIL import Image
 import os
 import shutil
 
-img_path = "/home/zuki/Downloads/main-btn-pre-arrow-c.png"
-res_dir = "/home/zuki/Desktop/com.devastate.android_1.0_1/res"
+img_path = "/home/tao/Downloads/main-btn-pre-arrow-c.png"
+res_dir = "/home/tao/Desktop/com.devastate.android_1.0_1/res"
 
 if not os.path.exists(img_path):
     print("Image not found")
