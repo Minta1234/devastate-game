@@ -3,7 +3,7 @@
 ![Davastate](https://img.shields.io/badge/Platform-Android-green.svg)
 ![Build](https://img.shields.io/badge/Build-Apktool-blue.svg)
 
-##Web
+## Web
 - Web Version: https://minta1234.github.io/devastate-game/assets/public/
 
 This repository contains the Android source code for **Davastate**, a Wolf RPG Editor game seamlessly ported to Android using the BrowserWoditor web engine wrapper.
