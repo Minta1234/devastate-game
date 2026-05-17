@@ -1,0 +1,11 @@
+# Ignore build outputs
+build/
+*.apk
+
+# Ignore signing keys
+*.keystore
+*.jks
+
+# Ignore temporary files
+__pycache__/
+*.tmp
