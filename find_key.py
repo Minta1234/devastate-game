@@ -11,7 +11,7 @@ keys = [
     list(b"Ph=X3^]o2A(,1=@3#a") # OWH Plus
 ]
 
-with open("/home/zuki/Desktop/com.devastate.android_1.0_1/assets/public/Data.wolf", "rb") as f:
+with open("/home/tao/Desktop/com.devastate.android_1.0_1/assets/public/Data.wolf", "rb") as f:
     header = f.read(64)
 
 for i, k in enumerate(keys):

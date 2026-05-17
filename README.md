@@ -15,22 +15,23 @@ This repository contains the Android source code for **Davastate**, a Wolf RPG E
 
 ## 🛠️ How to Build the APK
 
-If you want to compile this source code into an installable `.apk` file yourself, you will need to use [Apktool](https://apktool.org/).
+If you want to compile this source code into an installable `.apk` file yourself, you will need to use [Apktool](https://apktool.org/). 
 
-### 1. Rebuild the App
-Run the following command in the root directory to package the source code into an APK:
+For your convenience, an automated build script is included!
+
+### 1. Automated Build & Sign
+Open your terminal in the root directory and run the automated build script:
 ```bash
-apktool b . --use-aapt2 -o my_new_app.apk
+chmod +x build.sh
+./build.sh
 ```
+This script will automatically:
+1. Rebuild the app using `apktool`.
+2. Download `uber-apk-signer` (if not found).
+3. Zip-align and sign the APK with a modern V2 signature.
 
-### 2. Sign and Align (Required for Android 11+)
-Modern Android devices strictly require apps to be zip-aligned and signed with a V2 signature. You can easily do this using [uber-apk-signer](https://github.com/patrickfav/uber-apk-signer):
-```bash
-java -jar uber-apk-signer.jar -a my_new_app.apk
-```
-
-### 3. Install
-Transfer the resulting `-aligned-signed.apk` file to your Android device. **Note:** If you are updating from a previous version, you may need to uninstall the old app first due to signature mismatches.
+### 2. Install
+Transfer the resulting `my_new_app-aligned-signed.apk` file to your Android device. **Note:** If you are updating from a previous version, you may need to uninstall the old app first due to signature mismatches.
 
 ---
 
