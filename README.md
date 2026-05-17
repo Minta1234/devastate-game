@@ -20,12 +20,21 @@ If you want to compile this source code into an installable `.apk` file yourself
 For your convenience, an automated build script is included!
 
 ### 1. Automated Build & Sign
-Open your terminal in the root directory and run the automated build script:
+Open your terminal (or Command Prompt) in the root directory and run the automated build script for your operating system:
+
+**For Windows:**
+Double-click `build.bat` or run:
+```cmd
+build.bat
+```
+
+**For Linux / Mac:**
 ```bash
 chmod +x build.sh
 ./build.sh
 ```
-This script will automatically:
+
+These scripts will automatically:
 1. Rebuild the app using `apktool`.
 2. Download `uber-apk-signer` (if not found).
 3. Zip-align and sign the APK with a modern V2 signature.
