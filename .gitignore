@@ -1,6 +1,5 @@
 # Ignore build outputs
 build/
-*.apk
 
 # Ignore signing keys
 *.keystore
