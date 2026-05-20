@@ -74,4 +74,3 @@ If Android refuses to install your compiled APK:
 - Uninstall any existing versions of the app on your phone, as the newly generated `.keystore` signatures will not match the old ones.
 
 ## Original Game
-- This Is Copy Game Original From Japan Or China IDK
