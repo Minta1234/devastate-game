@@ -4,7 +4,9 @@ build/
 # Ignore signing keys
 *.keystore
 *.jks
-
+*.zip
+*.Resume.txt
+*.py
 # Ignore temporary files
 __pycache__/
 *.tmp
