@@ -72,5 +72,3 @@ Heuristic scanners mistake this behavior for screen-locking ransomware, but the 
 If Android refuses to install your compiled APK:
 - Ensure you ran the `zipalign` and `apksigner` (or `uber-apk-signer`) steps to generate a V2 signature.
 - Uninstall any existing versions of the app on your phone, as the newly generated `.keystore` signatures will not match the old ones.
-
-## Original Game
