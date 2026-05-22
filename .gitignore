@@ -5,7 +5,7 @@ build/
 *.keystore
 *.jks
 *.zip
-*.Resume.txt
+Resume.txt
 *.py
 # Ignore temporary files
 __pycache__/

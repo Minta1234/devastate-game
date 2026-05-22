@@ -1,1 +1,2 @@
+wolf.txt filter=lfs diff=lfs merge=lfs -text
 wodior.txt filter=lfs diff=lfs merge=lfs -text
