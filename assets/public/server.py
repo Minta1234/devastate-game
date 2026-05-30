@@ -20,7 +20,7 @@ class WasmHandler(SimpleHTTPRequestHandler):
 
         # Emulate csp in publishing sites
         # https://developers.google.com/web/fundamentals/security/csp?utm_source=devtools#eval_too
-        # self.send_header("Content-Security-Policy", "script-src 'unsafe-eval' 'self'")
+        self.send_header("Content-Security-Policy", "script-src 'unsafe-eval' 'self'")
 
         SimpleHTTPRequestHandler.end_headers(self)
 
@@ -40,9 +40,11 @@ if __name__ == '__main__':
     if args.open:
         # note: using https:// causes bad requests
         webbrowser.open_new_tab("http://localhost:{}".format(PORT))
+       
 
     # ThreadingHTTPServer: needed to accept ctrl+c when busy
     with ThreadingHTTPServer(("", PORT), WasmHandler) as httpd:
         print("Listening on port {}. Press Ctrl+C to stop.".format(PORT))
+        print("Opening http://localhost:8000 in the default browser.".format(PORT))
         httpd.serve_forever()
 

@@ -10,3 +10,6 @@ Resume.txt
 # Ignore temporary files
 __pycache__/
 *.tmp
+*.glb
+*.luau
+Continue.txt

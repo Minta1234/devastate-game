@@ -221,7 +221,7 @@ window.onload = () => {
 }
 
 window.onerror = (err) => {
-    // document.getElementById("error-log").innerHTML += err;
+     document.getElementById("error-log").innerHTML += err;
 }
 function showGameMemoryUsage() {
     if (Module && Module.HEAP8) {
@@ -435,11 +435,24 @@ function uploadSaveData() {
         }
         FS.writeFile(filePathStr, arr, { flags: 'w+' });
 
-        const backupPath = "/data0/" + Module.projectId + filePathStr;
+        const backupPath = "/data0/" + Module.projectId + "-Save" + filePathStr;
         FS.writeFile(backupPath, arr, { flags: 'w+' });
-        FS.syncfs(false, function (err) { });
-
-        alert("Save file loaded to Save folder")
+        FS.syncfs(false, function (err) {
+            if (err) {
+                console.error('Save sync failed:', err);
+            }
+            // After persisting to IDB, repopulate in-memory FS from IDB so the game can detect new files
+            if (typeof Module !== 'undefined' && Module.__asyncjs__syncFS) {
+                Module.__asyncjs__syncFS(true).then(() => {
+                    alert("Save file loaded to Save folder");
+                }).catch(e => {
+                    console.error('Failed to reload FS from IDB after save upload:', e);
+                    alert("Save file loaded to Save folder (sync error)");
+                });
+            } else {
+                alert("Save file loaded to Save folder")
+            }
+        });
     }
     fr.readAsArrayBuffer(file);
 }
@@ -662,7 +675,7 @@ document.addEventListener("visibilitychange", async (e) => {
     function mkdirs(dirpath) {
         const rootDir = FS.analyzePath(dirpath);
         if (!rootDir.exists) {
-            if (!rootDir.parentExists) {
+            if (!rootDir.parentExists && rootDir.parentPath !== dirpath) {
                 mkdirs(rootDir.parentPath);
             }
             try {
@@ -723,8 +736,21 @@ document.addEventListener("visibilitychange", async (e) => {
             FS.writeFile(path, dict[key]);
             FS.writeFile(key, dict[key]);
         };
-        FS.syncfs(false);
-        showToast("Load complete");
+        FS.syncfs(false, function (err) {
+            if (err) {
+                console.error('Save load sync failed:', err);
+            }
+            if (typeof Module !== 'undefined' && Module.__asyncjs__syncFS) {
+                Module.__asyncjs__syncFS(true).then(() => {
+                    showToast("Load complete");
+                }).catch(e => {
+                    console.error('Failed to reload FS from IDB after bulk save upload:', e);
+                    showToast("Load complete (sync error)");
+                });
+            } else {
+                showToast("Load complete");
+            }
+        });
     }
 
     function loadAllFiles(selectedFiles, i, stop, dict, onLoadFinished) {
