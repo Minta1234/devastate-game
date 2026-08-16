@@ -3,6 +3,7 @@
 ![Davastate](https://img.shields.io/badge/Platform-Android-green.svg)
 ![Build](https://img.shields.io/badge/Build-Apktool-blue.svg)
 
+##This Project Use Capacitor https://capacitorjs.com/ to create APK
 ## Web
 - Web Version: https://minta1234.github.io/devastate-game/assets/public/
 
